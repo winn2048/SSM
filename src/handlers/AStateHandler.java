@@ -1,7 +1,7 @@
 package handlers;
 
 import exception.ProcessException;
-import modale.AModel;
+import model.AModel;
 import states.StatesEnum;
 
 /**

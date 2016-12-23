@@ -1,4 +1,4 @@
-package modale;
+package model;
 
 /**
  * Created by winn2048@gmail.com on 12/23/2016.

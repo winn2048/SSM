@@ -1,4 +1,4 @@
-package modale;
+package model;
 
 import states.StatesEnum;
 

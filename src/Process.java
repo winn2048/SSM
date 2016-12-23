@@ -1,6 +1,6 @@
 import exception.ProcessException;
 import handlers.AStateHandler;
-import modale.AModel;
+import model.AModel;
 import states.StatesEnum;
 
 /**

@@ -26,7 +26,7 @@ public class PoStateMachine {
 
 
     private PoStateMachine() {
-        System.out.println("===============PO 流程引擎开始初始化===================");
+        System.out.println("===============PO Define the process===================");
         try {
             map.put(StatesEnum.NEW.name() + StatesEnum.PUBLISH.name(), new Process(StatesEnum.NEW, StatesEnum.PUBLISH, new NewToPublishHandler(StatesEnum.NEW, StatesEnum.PUBLISH)));
             map.put(StatesEnum.NEW.name() + StatesEnum.CANCEL.name(), new Process(StatesEnum.NEW, StatesEnum.CANCEL, new NewToCancelHandler(StatesEnum.NEW, StatesEnum.CANCEL)));
@@ -35,9 +35,9 @@ public class PoStateMachine {
             map.put(StatesEnum.RECEIVED.name() + StatesEnum.CHECKED.name(), new Process(StatesEnum.RECEIVED, StatesEnum.CHECKED, new ReceivedToCheckedHandler(StatesEnum.RECEIVED, StatesEnum.CHECKED)));
             map.put(StatesEnum.CHECKED.name() + StatesEnum.DONE.name(), new Process(StatesEnum.CHECKED, StatesEnum.DONE, new CheckedToDoneHandler(StatesEnum.CHECKED, StatesEnum.DONE)));
         }catch (ProcessException pe){
-            System.out.println("PO状态机初始化失败："+pe.getMsg());
+            System.out.println("PO State Machine init failed："+pe.getMsg());
         }
-        System.out.println("===============PO 流程引擎  初始化结束===================");
+        System.out.println("===============PO Define the process Done.===================");
     }
 
     private static class SingletonHolder {
@@ -50,12 +50,12 @@ public class PoStateMachine {
 
     public Process getProcess(StatesEnum startState, StatesEnum targetState) throws NoProcessException {
         if(startState==null || targetState==null){
-            throw new NoProcessException("开始状态和目标状态必须得有！");
+            throw new NoProcessException("Must have start state and target state!");
         }
         Process process = map.get(startState.name()+targetState.name());
 
         if(process==null){
-            throw  new NoProcessException(startState.name()+"->"+targetState.name()+",  规则引擎不允许！");
+            throw  new NoProcessException(startState.name()+"->"+targetState.name()+",  Engine Cant process！");
         }
         return process;
     }
